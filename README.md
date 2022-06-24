@@ -8,7 +8,8 @@ Input image:
 Output (Excel file):  
 ![rubiks excel](https://github.com/kenta-s/sowhat/blob/master/spec/fixtures/images/rubiks_excel.png)
 
-Each cell represents a pixel of the image.
+Each cell represents a pixel of the image.  
+![rubiks excel](https://github.com/kenta-s/sowhat/blob/master/spec/fixtures/images/rubiks_excel2.png)
 
 ## Usage
 
