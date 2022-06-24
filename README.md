@@ -2,11 +2,13 @@
 
 sowhat converts an image file into an excel file.
 
-Input image
+Input image:  
 ![rubiks](https://github.com/kenta-s/sowhat/blob/master/spec/fixtures/images/rubiks.png)
 
-Output (Excel file)
+Output (Excel file):  
 ![rubiks excel](https://github.com/kenta-s/sowhat/blob/master/spec/fixtures/images/rubiks_excel.png)
+
+Each cell represents a pixel of the image.
 
 ## Usage
 
