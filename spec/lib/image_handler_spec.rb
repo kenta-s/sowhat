@@ -19,10 +19,10 @@ RSpec.describe ImageHandler do
   end
 
   describe '#pick_color' do
-    it 'returns "ffffff" when a pixel is blank' do
+    it 'returns "000000" when a pixel is blank' do
       image_path = Pathname.new('spec/fixtures/images/100_200.png')
       image_handler = described_class.new(image_path)
-      expect(image_handler.pick_color(0, 0)).to eq('ffffff')
+      expect(image_handler.pick_color(0, 0)).to eq('000000')
     end
 
     it 'returns "eb7d46" when a pixel has [235, 125, 70]' do

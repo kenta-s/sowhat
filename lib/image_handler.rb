@@ -15,8 +15,9 @@ class ImageHandler
   end
 
   def pick_color(i, j)
-    rgb = @pixels[i][j].map { |color| color.to_s(16) }.join
-    # returns white instead of black when a pixel is blank
-    rgb.length == 6 ? rgb : 'ffffff'
+    rgb = @pixels[i][j].map do |color|
+      c = color.to_s(16)
+      c.length == 1 ? "0#{c}" : c
+    end.join
   end
 end
