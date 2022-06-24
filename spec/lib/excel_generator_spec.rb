@@ -13,9 +13,9 @@ RSpec.describe ExcelGenerator do
 
     it 'initializes worksheet based on image width and height' do
       excel_generator = described_class.new(image_handler)
-      expect(excel_generator.worksheet[99][199]).to be_a(RubyXL::Cell)
-      expect(excel_generator.worksheet[99][200]).to eq(nil)
-      expect(excel_generator.worksheet[100]).to eq(nil)
+      expect(excel_generator.worksheet[199][99]).to be_a(RubyXL::Cell)
+      expect(excel_generator.worksheet[199][100]).to eq(nil)
+      expect(excel_generator.worksheet[200]).to eq(nil)
     end
 
     it 'resizes column width' do
@@ -31,7 +31,7 @@ RSpec.describe ExcelGenerator do
       image_handler = ImageHandler.new(image_path)
       excel_generator = described_class.new(image_handler)
       expect{ excel_generator.fill_cells }
-       .to change{ excel_generator.worksheet[95][10].fill_color }
+       .to change{ excel_generator.worksheet[10][95].fill_color }
        .from('ffffff')
        .to('ea7d46')
     end

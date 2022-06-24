@@ -16,8 +16,8 @@ class ExcelGenerator
   end
 
   def fill_cells
-    @image_handler.width.times do |i|
-      @image_handler.height.times do |j|
+    @image_handler.height.times do |i|
+      @image_handler.width.times do |j|
         color = @image_handler.pick_color(i, j)
         worksheet.sheet_data[i][j].change_fill(color)
       end
@@ -32,13 +32,14 @@ class ExcelGenerator
 
   def add_cells
     # creating necessary cells to display an image
-    @image_handler.width.times do |i|
-      @image_handler.height.times do |j|
+    @image_handler.height.times do |i|
+      @image_handler.width.times do |j|
         @worksheet.add_cell(i, j, '')
       end
     end
   end
 
+  # making each cell square
   def resize_column_width
     @image_handler.width.times do |i|
       @worksheet.change_column_width(i, COLUMN_WIDTH)
