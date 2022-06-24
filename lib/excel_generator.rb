@@ -1,7 +1,10 @@
 require 'rubyXL'
+require 'rubyXL/convenience_methods'
 
 class ExcelGenerator
   attr_reader :worksheet
+
+  COLUMN_WIDTH = 2.0
 
   def initialize(image_handler)
     @image_handler = image_handler
@@ -9,6 +12,7 @@ class ExcelGenerator
     @worksheet = workbook.worksheets[0]
 
     add_cells
+    resize_column_width
   end
 
   private
@@ -19,6 +23,12 @@ class ExcelGenerator
       @image_handler.height.times do |j|
         @worksheet.add_cell(i, j, '')
       end
+    end
+  end
+
+  def resize_column_width
+    @image_handler.width.times do |i|
+      @worksheet.change_column_width(i, COLUMN_WIDTH)
     end
   end
 end
