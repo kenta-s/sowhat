@@ -8,11 +8,24 @@ class ExcelGenerator
 
   def initialize(image_handler)
     @image_handler = image_handler
-    workbook = RubyXL::Workbook.new
-    @worksheet = workbook.worksheets[0]
+    @workbook = RubyXL::Workbook.new
+    @worksheet = @workbook.worksheets[0]
 
     add_cells
     resize_column_width
+  end
+
+  def fill_cells
+    @image_handler.width.times do |i|
+      @image_handler.height.times do |j|
+        color = @image_handler.pick_color(i, j)
+        worksheet.sheet_data[i][j].change_fill(color)
+      end
+    end
+  end
+
+  def generate(filename)
+    @workbook.write(filename)
   end
 
   private

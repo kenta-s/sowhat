@@ -24,4 +24,37 @@ RSpec.describe ExcelGenerator do
       expect(excel_generator.worksheet.get_column_width(99)).to eq(ExcelGenerator::COLUMN_WIDTH)
     end
   end
+
+  describe '#fill_cells' do
+    it 'fills color based on given image' do
+      image_path = Pathname.new('spec/fixtures/images/100_200.png')
+      image_handler = ImageHandler.new(image_path)
+      excel_generator = described_class.new(image_handler)
+      expect{ excel_generator.fill_cells }
+       .to change{ excel_generator.worksheet[95][10].fill_color }
+       .from('ffffff')
+       .to('ea7d46')
+    end
+  end
+
+  describe '#generate' do
+    let(:file) { Pathname.new('tmp/9460cdfc386e2728dfd45842500465cc.xlsx') }
+
+    around do |example|
+      File.delete(file) if FileTest.exist?(file)
+      example.run
+      File.delete(file) if FileTest.exist?(file)
+    end
+
+    it 'generates an excel file' do
+      image_path = Pathname.new('spec/fixtures/images/100_200.png')
+      image_handler = ImageHandler.new(image_path)
+      excel_generator = described_class.new(image_handler)
+
+      expect{ excel_generator.generate(file) }
+       .to change{ FileTest.exist?(file) }
+       .from(false)
+       .to(true)
+    end
+  end
 end
