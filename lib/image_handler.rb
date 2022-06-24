@@ -6,10 +6,10 @@ class ImageHandler
   end
 
   def width
-    @img.get_pixels[0].size
+    @width ||= @img.get_pixels[0].size
   end
 
   def height
-    @img.get_pixels.size
+    @height ||= @img.get_pixels.size
   end
 end
