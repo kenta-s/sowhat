@@ -20,8 +20,10 @@ RSpec.describe ExcelGenerator do
 
     it 'resizes column width' do
       excel_generator = described_class.new(image_handler)
-      expect(excel_generator.worksheet.get_column_width(0)).to eq(ExcelGenerator::COLUMN_WIDTH)
-      expect(excel_generator.worksheet.get_column_width(99)).to eq(ExcelGenerator::COLUMN_WIDTH)
+      # This is rounded. There might be better test for this.
+      # https://github.com/weshatheleopard/rubyXL/blob/4dae5e849401709f97cc0a7ab82899fe1f54b98b/lib/rubyXL/convenience_methods/worksheet.rb#L370
+      expect(excel_generator.worksheet.get_column_width(0)).to eq(ExcelGenerator::COLUMN_WIDTH.round)
+      expect(excel_generator.worksheet.get_column_width(99)).to eq(ExcelGenerator::COLUMN_WIDTH.round)
     end
   end
 
